@@ -36,3 +36,26 @@ mpe=colMeans(distan)
 medianpe=colMedians(distan)
 mean(mpe)
 mean(medianpe)
+
+#### Averaging DOW, hour and network 
+library(matrixStats)
+dim(Kantar)
+distan<-NULL
+range = as.integer(dim(Kantar)[1]/10)
+for (i in 1:10){
+  truncone<-(i-1)*range+1
+  trunctwo<-i*range
+  train=Kantarpart[-(truncone:trunctwo),]
+  test=Kantarpart[(truncone:trunctwo),]
+  test$pred=NA
+  test$pred[i]<-mean(train$Cost_per30seconds[train$DOW==test$DOW[i] 
+                                            &train$Hour==&test$Hour[i]
+                                            &train$channel==test$channel[i]])
+  diff=abs(test$pred-test$Cost_per30seconds)/test$Cost_per30seconds
+  distan<-cbind(distan,diff)
+  disvactor<-as.vector(distan)
+}
+mpe=colMeans(distan)
+medianpe=colMedians(distan)
+mean(mpe)
+mean(medianpe)
