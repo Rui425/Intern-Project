@@ -1,6 +1,6 @@
 Intern-Project
 
-My own project done while doing internship in simulmedia
+My own project while doing internship in simulmedia
 
 Kantar Cost Estimates
 ============================
